@@ -5,11 +5,15 @@ const cors = require("cors");
 const dbName = "partytime";
 const port = 3000;
 
+const authRouter = require("./routes/authRoutes");
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
+
+app.use("/api/auth", authRouter);
 
 mongoose.connect(`mongodb://localhost/${dbName}`, {
   useNewUrlParser: true,
